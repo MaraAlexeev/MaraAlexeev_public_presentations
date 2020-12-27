@@ -6,7 +6,7 @@ If you see an error or issue with attribution in any talk, please open an issue,
 
 ## Invitations
 
-If you would like to invite me to give a talk, please open an issue on github and label it as an invitation. I require a minimal show of effort to respond, thus the labeling. 
+If you would like to invite me to give a talk, please open an issue on github and label it as an invitation. I require a minimal show of effort to respond, thus the labeling. :sunglasses:
 
 I am happy to talk in the following languages: 
 

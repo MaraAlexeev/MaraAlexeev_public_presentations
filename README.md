@@ -20,4 +20,4 @@ If you want the talk in another language, I am happy to work with someone to tra
 
 **Name of talk**, My role, *Date*
 
-**R-Ladies Boston CV Workshop**, created and presented materials, *November 2020*
+[**R-Ladies Boston CV Workshop**](https://github.com/MaraAlexeev/MaraAlexeev_public_presentations/blob/master/pdfs_of_talks/r-ladies_boston_cv_workshop_November_2020.pdf), created and presented materials, *November 2020*

@@ -1,0 +1,91 @@
+---
+title: '**Title of Your Submission**'
+author:
+- Jane Doe, MD, MPH:
+    email: example@example.com
+    institute: institute_1
+- name: John Doe, MD, MBI
+  institute: institute_2
+institute:
+- institute_1: Institution, City, State, Country
+- institute_2: Institution, City, State, Country
+output:
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: no
+    number_sections: no
+    pandoc_args:
+    - --lua-filter=scholarly-metadata.lua
+    - --lua-filter=author-info-blocks.lua
+  pdf_document2: default
+csl: vancouver-superscript.csl
+link-citations: yes
+bibliography: CIC_example.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(bookdown)
+library(readxl)
+library(kableExtra)
+```
+
+## What might the attendee be able to do after being in your session?
+
+This section should describe what the attendee might be able to do with the knowledge you are sharing. “Clinical” is part of this meeting’s name, and “Best Practices” is a pillar of the AMIA 2020 Clinical Informatics Conference. This short statement of 1 - 2 sentences is your opportunity to tell attendees the practical implications of your findings on what clinical informaticians do, or on patient/population outcomes
+
+## Description of the Problem or Gap
+
+Define the problem or gap here. EG, what HIT tool is poorly designed, or non-existent, or creating barriers to better clinician performance or patient/population outcomes?
+
+Please use this format for reference citations[@pryor_help_1983; @gardner_computer-critiqued_1990].
+
+## Methods: What did you do to address the problem or gap?
+
+This text uses a paragraph to describe methods. 
+
+## Results: What was the outcome(s) of what you did to address the problem or gap?
+
+This is a write-up of your results.
+
+Use the examples below if you will include a figure or a table. Figures need to be placed as close to the corresponding text as possible and not extend beyond one page. See Figure \@ref(fig:nice-fig). 
+
+```{r nice-fig, echo=FALSE, fig.cap='Here is a nice figure!', out.width='50%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+This paragraph contains a reference to Table \@ref(tab:nice-tab) below. This table contains information on word and page limits per meeting format submission abstract; \textcolor{red}{if your submission is longer than what is specified, it will be rejected without review.} All tables need to be placed as close to the corresponding text as possible, but each individual table should be on one page and not extend to multiple pages unless labeled as “Continued.” All submissions must have a brief abstract (word limit as in Table \@ref(tab:nice-tab). The abstract is NOT part of this submission document. You must enter the abstract on the ScholarOne submission website in the Abstract box in Step 1 of your submission process. If your submission is accepted, this abstract is used in our meeting materials, so be sure that it clearly and briefly describes your work
+
+```{r nice-tab, echo=FALSE, fig.align='center'}
+
+limit_table <- readxl::read_excel("./testmanuscript_spreadsheet.xlsx")
+
+knitr::kable(
+  head(limit_table), caption = 'Submission type, abstract length, and page length maximum for AMIA submissions.', booktabs = TRUE) %>%
+  footnote(symbol = c("Tables and figures go on page 2")
+           )
+```
+
+## Discussion of Results
+
+This text uses a paragraph to describe important findings of the project. This text uses a paragraph to describe important findings of the project. This text uses a paragraph to describe important findings of the project. This text uses a paragraph to describe important findings of the project.
+
+## Conclusion
+
+Your conclusion goes at the end, followed first by Attendee’s Take-away Tool, then followed by References, which must follow the [Vancouver Style](http://www.citethisforme.com/). 
+
+## Attendee’s Take-away Tool
+
+This text describes the take-away tool. This may be a strategy, an algorithm, an app, etc. The “tool” is what the attendee can use to reproduce your study in his/her own practice setting. The presenter may use an illustration to depict the tool on the 2nd page of the submission abstract.
+
+## Use of Knowledge Acquired at Previous AMIA Events
+
+Did something you learned at a previous AMIA event contribute to your awareness of the problem or to the solution or strategy you describe in this submission? If so, mention it here. This section may go over to an additional page and will not be counted against you if you have this as an extra page in the page count.
+
+[Original document here](https://www.amia.org/sites/default/files/CIC2021-Submission-Template.pdf). I have made some stylistic changes that I believe are appropriate for modern formatting. 
+
+## References
+

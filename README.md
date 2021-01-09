@@ -28,4 +28,4 @@ If you want the talk in another language, I am happy to work with someone to tra
 
 **Name of materials**, My role, *Date*, (optional field if not publicly posted)
 
-.Rmd Template of CIC Submission (Original [here](https://www.amia.org/sites/default/files/CIC2021-Submission-Template.pdf)), Creator/Gatherer of Resources, *January 9, 2021*
+[.Rmd Template of CIC Submission](https://github.com/MaraAlexeev/MaraAlexeev_public_presentations/blob/master/cic_submission_template/testmanuscript.Rmd) (Original [here](https://www.amia.org/sites/default/files/CIC2021-Submission-Template.pdf)), Creator/Gatherer of Resources, *January 9, 2021*

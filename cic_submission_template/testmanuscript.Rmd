@@ -1,7 +1,7 @@
 ---
 title: '**Title of Your Submission**'
 author:
-- Jane Doe, MD, MPH:
+- Jane E. Doe, MD, MPH:
     email: example@example.com
     institute: institute_1
 - name: John Doe, MD, MBI

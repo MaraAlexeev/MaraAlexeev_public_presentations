@@ -1,0 +1,132 @@
+---
+title: 'Quailty Improvement—Improved with R'
+author:
+- Mara Alexeev, MD, MPH:
+    email: mara.alexeev@childrens.harvard.edu
+    institute: institute_1
+institute:
+- institute_1: Boston Children's Hospital, Boston, MA, USA
+output:
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: no
+    number_sections: no
+    pandoc_args:
+    - --lua-filter=scholarly-metadata.lua
+    - --lua-filter=author-info-blocks.lua
+  pdf_document2: default
+csl: vancouver-superscript.csl
+link-citations: yes
+bibliography: [qi_workshop.bib, qi_workshop_package.bib]
+nocite: |
+  @bookdown2016
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(bookdown)
+library(readxl)
+library(kableExtra)
+```
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+
+knitr::write_bib(c(.packages(), 'rmarkdown'), 'qi_workshop_package.bib')
+
+```
+
+## What might the attendee be able to do after being in your session?
+
+In this workshop, attendees will learn how to use R @R-base to create, analysis, share, and publish the results of quality improvement (QI) projects based on tools @noauthor_quality_2017 published by the Institute for Healthcare Improvement and publishing recommendations from the Journal Of Graduate Medical Education @wong_how_2016. 
+
+## Description of the Problem or Gap
+
+Many clinical informaticians participate in QI projects as either project leads or in supporting roles—helping other clinicians collect data from EHRs or implement projects within an EHR. There are many tools and guidelines for QI projects, but the tools are not well integrated into a single, comprehensive workflow of a QI project. 
+
+## Methods: What did you do to address the problem or gap?
+
+I have created a QI template in R that uses existing R packages, QI tools, and publishing recommendations. This is a plug and play format that allows clinicians to directly create, analyze, and beautifully display their project and results with only a beginner's knowledge of R, R Markdown @R-rmarkdown, [Github](github.com), and spreadsheets. 
+
+## Results: What was the outcome(s) of what you did to address the problem or gap?
+
+During the workshop, attendees will modify cause and effect diagrams within R, customize tables and graphs for a Failure Modes and Effects Analysis (FMEA) and a Pareto Chart (Figure \@ref(fig:pareto)), learn how to make scatter plots (Figure \@ref(fig:scatter)) and histograms (Figure \@ref(fig:histo)) with ggplot2, create runcharts that can update as data is collected with a click of button, use the automated bibliographic capabilities of R, create a Github Page for their demo QI project.
+
+```{r pareto, echo=FALSE, fig.cap='Example from IHI QI Essentials Toolkit: Pareto', fig.asp=.60, fig.align='center'}
+pareto <- read_excel("./qi_spreadsheet_workshop.xlsx", 
+    sheet = "Pareto")
+
+plot_pareto <- ggplot(pareto, aes(x = reorder(`Error Type`, -`Frequency`), y = `Frequency`)) +
+  geom_col() +
+  labs(title = "Types of Errors Discovered During Surgical Set-up", subtitle = "Pareto Chart", x = " ", y = "Frequency") +
+  #theme(axis.text.x = element_text(angle = 45)) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
+  annotate("text", x = 2, y = 75, label = "Vital Few") +
+  annotate("pointrange", x= 2, y = 70, xmin = 1, xmax = 3,
+  colour = "black", size = 1) +
+  annotate("text", x = 6, y = 40, label = "Useful many") +
+  annotate("pointrange", x= 6, y = 35, xmin = 4, xmax = 8,
+  colour = "black", size = 1)
+  
+
+plot_pareto
+```
+
+
+```{r scatter, echo=FALSE, message=FALSE, fig.cap='Example Scatter plot with ggplot2', fig.asp=.50, fig.align='center'}
+fake_data <- read_excel("./qi_spreadsheet_workshop.xlsx", 
+    sheet = "scatter")
+
+scatter_plot <- ggplot(fake_data, aes(count, time)) +
+  geom_point() +
+  geom_smooth(method=lm) +
+  labs(title = "Average Time from Admit Order to Order Reconillation Completed", subtitle = "Academic Year 2012-2013 \nPGY-2 Internal Medicine Residents", caption = "Simulated Data", x = "Number of Residents on Service", y = "Average Time (Mins)") +
+  scale_x_continuous(breaks = (1:10))
+
+scatter_plot
+```
+
+```{r histo, echo=FALSE, fig.cap='Example histogram created in ggplot2', fig.asp=.75, fig.align='center'}
+pre <- tibble(days = round(runif(100, 0, 21)), intervention = "Before Intervention")
+post <- tibble(days = round(runif(100, 0, 14)), intervention = "Post Intervention")
+
+data_histo <- bind_rows(pre, post)
+
+plot_data_histo <-  ggplot(data_histo, aes(days)) +
+  geom_histogram(binwidth = 1, color='white') +
+  labs(title = "Days between date of encounter and note signed", subtitle = "Adult Cardiology and GI Clinics", y = "Number of Notes", x = "Days", caption="Simulated Data") +
+scale_y_continuous(breaks=c(0,2,4,6,8,10,12,14,16)) +
+  facet_wrap(~intervention, ncol = 1)
+
+
+plot_data_histo
+
+
+```
+
+
+## Discussion of Results
+
+At the end of the workshop participants will have the knowledge and materials to create a QI project write-up and analysis all within a single R Markdown file. They will learn how to customize the project to suit many QI project proposals. This simplification of the QI project proposal will allow attendees to more quickly prepare QI project proposals and analyze their results. More advanced knowledge of those topics will allow users to create highly customized presentations of their work. 
+
+## Conclusion
+
+A standardized tool to create QI projects will eliminate duplicated efforts in project workflows and allow results to be more quickly disseminated within an institution, posted online, or published in a journal.
+
+## Attendee’s Take-away Tool
+
+Attendee's will be able to access the QI tools through a publicly available GitHub repository, which they will be able to download and modify for their own purposes. They will also receive a curated selection of tools used during the workshop for further reading.
+
+## Use of Knowledge Acquired at Previous AMIA Events
+
+No. 
+
+## References
+
+
+

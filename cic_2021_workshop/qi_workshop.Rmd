@@ -18,18 +18,22 @@ output:
 csl: vancouver-superscript.csl
 link-citations: yes
 bibliography: [qi_workshop.bib, qi_workshop_package.bib]
-nocite: |
-  @bookdown2016
+urlcolor: blue
 
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, }
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(knitr)
 library(bookdown)
 library(readxl)
 library(kableExtra)
+library(gridExtra)
+library(ggsci)
+library(extrafont)
+font_import()
+loadfonts(device = "win")
 ```
 
 
@@ -41,29 +45,75 @@ knitr::write_bib(c(.packages(), 'rmarkdown'), 'qi_workshop_package.bib')
 
 ```
 
+Suggested length of workshop is **2 hours**.
+
 ## What might the attendee be able to do after being in your session?
 
-In this workshop, attendees will learn how to use R @R-base to create, analysis, share, and publish the results of quality improvement (QI) projects based on tools @noauthor_quality_2017 published by the Institute for Healthcare Improvement and publishing recommendations from the Journal Of Graduate Medical Education @wong_how_2016. 
+In this workshop, attendees will learn how to use R @R-base to create, analyze, share, and publish the results of quality improvement (QI) projects based on tools @noauthor_quality_2017 published by the Institute for Healthcare Improvement and publishing recommendations from the Journal Of Graduate Medical Education @wong_how_2016. This is a plug and play format that allows clinicians to directly create, analyze, and beautifully display their project and results with only a beginner's knowledge of R, R Markdown @R-rmarkdown, and spreadsheets.
 
-## Description of the Problem or Gap
+## Description of the problem or gap
 
 Many clinical informaticians participate in QI projects as either project leads or in supporting roles—helping other clinicians collect data from EHRs or implement projects within an EHR. There are many tools and guidelines for QI projects, but the tools are not well integrated into a single, comprehensive workflow of a QI project. 
 
-## Methods: What did you do to address the problem or gap?
+## Conclusion
 
-I have created a QI template in R that uses existing R packages, QI tools, and publishing recommendations. This is a plug and play format that allows clinicians to directly create, analyze, and beautifully display their project and results with only a beginner's knowledge of R, R Markdown @R-rmarkdown, [Github](github.com), and spreadsheets. 
+At the end of the workshop, participants will have the knowledge and materials to create a QI project write-up and analysis all within a single R Markdown file. They will learn how to customize the project to suit many QI project proposals. This simplification of the QI project workflow will allow attendees to more quickly prepare QI project proposals and analyze their results. More advanced knowledge of R packages discussed at the workshop will allow users to create highly customized presentations of their work. 
+A standardized tool to create QI projects will eliminate duplicated efforts in project workflows and allow results to be more quickly disseminated within an institution, posted online, or published in a journal.
 
-## Results: What was the outcome(s) of what you did to address the problem or gap?
+## Attendee’s Take-away Tool
 
-During the workshop, attendees will modify cause and effect diagrams within R, customize tables and graphs for a Failure Modes and Effects Analysis (FMEA) and a Pareto Chart (Figure \@ref(fig:pareto)), learn how to make scatter plots (Figure \@ref(fig:scatter)) and histograms (Figure \@ref(fig:histo)) with ggplot2, create runcharts that can update as data is collected with a click of button, use the automated bibliographic capabilities of R, create a Github Page for their demo QI project.
+Attendee's will be able to access the QI tools through a publicly available GitHub repository, which they will be able to download and modify for their own purposes. They will also receive a curated selection of advanced resources for further learning. 
 
-```{r pareto, echo=FALSE, fig.cap='Example from IHI QI Essentials Toolkit: Pareto', fig.asp=.60, fig.align='center'}
+## Prerequisities
+
+- Computer with internet connection
+- [Supported browser](https://support.rstudio.com/hc/en-us/articles/227449447-Supported-browsers-for-RStudio-Connect)
+- RStudio Cloud account—*free*
+- Review [preparatory materials](https://commonmark.org/help/tutorial/) to learn Markdown basics—*optional, but useful*
+
+## Level of content
+
+All content will be accessible to a beginner R user. However, each section of the **Play** part of the workshop will have intermediate and advanced topics embedded in the code for more advanced users to manipulate.
+
+## Instructor’s experience teaching similar content
+
+Mara Alexeev is a pediatrician and clinical informatics fellow. She is also a graduate student working on her Masters in Biomedical Informatics at Harvard Medical School. She was part of the organizing committee for the 2020 R/Medicine conference and is a co-organizer for R-Ladies Boston, where she recently hosted a workshop on how to make and maintain a CV in R.
+
+## Outline of topics
+
+**Systems check** *~15 minutes*
+
+- Confirm accounts set up
+- Discuss pre-workshop materials
+
+**Introduction**  *~30 minutes*
+
+- R Markdown demo
+- Knit a document
+- View a demo GitHub Page
+
+**Play** *~30 minutes*
+
+- Modify cause and effect diagrams within R
+- Customize tables and graphs for a Failure Modes and Effects Analysis (FMEA) and a Pareto Chart 
+- Learn how to make scatter plots (Figure \@ref(fig:scatter)) and histograms (Figure \@ref(fig:histo)) with ggplot2
+- Create runcharts that can update as data is collected with a click of button
+- Use the automated bibliographic capabilities of R
+
+**Wrap Up and Discussion** *~20 minutes*
+
+- Discussion of participants questions
+- Watch demonstration of publishing to Github Page
+- Preview of advanced materials
+
+
+```{r pareto, evaluate = FALSE, include=FALSE, echo=FALSE, fig.cap='Example Pareto chart made in R', fig.asp=.60, fig.align='center'}
 pareto <- read_excel("./qi_spreadsheet_workshop.xlsx", 
     sheet = "Pareto")
 
 plot_pareto <- ggplot(pareto, aes(x = reorder(`Error Type`, -`Frequency`), y = `Frequency`)) +
   geom_col() +
-  labs(title = "Types of Errors Discovered During Surgical Set-up", subtitle = "Pareto Chart", x = " ", y = "Frequency") +
+  labs(title = "Types of Errors Discovered During Surgical Set-up", subtitle = "Pareto Chart", x = " ", y = "Frequency", caption = "Source data from IHI QI Toolkits") +
   #theme(axis.text.x = element_text(angle = 45)) +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
   annotate("text", x = 2, y = 75, label = "Vital Few") +
@@ -78,53 +128,73 @@ plot_pareto
 ```
 
 
-```{r scatter, echo=FALSE, message=FALSE, fig.cap='Example Scatter plot with ggplot2', fig.asp=.50, fig.align='center'}
+```{r scatter, echo=FALSE, message=FALSE, fig.cap='Example scatter plot made in R', fig.asp=.50, fig.align='center'}
 fake_data <- read_excel("./qi_spreadsheet_workshop.xlsx", 
     sheet = "scatter")
 
-scatter_plot <- ggplot(fake_data, aes(count, time)) +
-  geom_point() +
-  geom_smooth(method=lm) +
-  labs(title = "Average Time from Admit Order to Order Reconillation Completed", subtitle = "Academic Year 2012-2013 \nPGY-2 Internal Medicine Residents", caption = "Simulated Data", x = "Number of Residents on Service", y = "Average Time (Mins)") +
-  scale_x_continuous(breaks = (1:10))
+scatter_plot <- ggplot(fake_data, aes(x = count, y = time, color = resident)) +
+  geom_jitter() +
+  labs(title = "Average Time from Admission Order to Order Reconciliation Completed", subtitle = "Academic Year 2012-2013 \nPGY-2 Residents", caption = "Simulated Data", x = "Number of Residents on Service", y = "Average Time (Mins)") +
+  scale_x_continuous(breaks = (1:10)) +
+  
+  # To use for fills, add
+  scale_color_jama()+
+
+# To use for line and point colors, add
+  scale_fill_lancet() +
+  
+  theme_bw() +
+  
+  scale_color_discrete(name="Service Type") +
+  
+  theme(legend.justification=c(1,0), legend.position=c(0.95,0.4), legend.box.background = element_rect(colour = "black")) +
+  
+  theme(text=element_text(family="serif"))
 
 scatter_plot
 ```
 
-```{r histo, echo=FALSE, fig.cap='Example histogram created in ggplot2', fig.asp=.75, fig.align='center'}
-pre <- tibble(days = round(runif(100, 0, 21)), intervention = "Before Intervention")
-post <- tibble(days = round(runif(100, 0, 14)), intervention = "Post Intervention")
 
-data_histo <- bind_rows(pre, post)
+```{r histo, echo=FALSE, fig.cap='Example histogram created in R', fig.asp=.75, fig.align='center'}
+pre_cards <- tibble(days = round(runif(100, 0, 21)), intervention = "Before Intervention", clinic = "Cardiology Clinic")
+post_cards <- tibble(days = round(runif(100, 0, 14)), intervention = "After Intervention", clinic = "Cardiology Clinic")
+pre_gi <- tibble(days = round(runif(100, 0, 20)), intervention = "Before Intervention", clinic = "Endocrinology Clinic")
+post_gi <- tibble(days = round(runif(100, 0, 15)), intervention = "After Intervention", clinic = "Endocrinology Clinic")
 
-plot_data_histo <-  ggplot(data_histo, aes(days)) +
-  geom_histogram(binwidth = 1, color='white') +
-  labs(title = "Days between date of encounter and note signed", subtitle = "Adult Cardiology and GI Clinics", y = "Number of Notes", x = "Days", caption="Simulated Data") +
-scale_y_continuous(breaks=c(0,2,4,6,8,10,12,14,16)) +
-  facet_wrap(~intervention, ncol = 1)
+data_histo <- bind_rows(pre_cards, post_cards, pre_gi, post_gi)
 
+data_histo$intervention <- as_factor(data_histo$intervention)
+data_histo$clinic <- as_factor(data_histo$clinic)
+
+
+
+plot_data_histo <-  ggplot(data_histo, aes(days, fill = clinic)) +
+  geom_histogram(binwidth = 1, color = 'white') +
+  labs(title = "Days between date of encounter and note signed", subtitle = "Adult Patients at XYZ Campus", y = "Number of Notes", x = "Days", caption="Simulated Data") +
+scale_y_continuous(breaks=c(0,4,8,12,16, 20, 24)) +
+  facet_grid(intervention ~ clinic) +
+ 
+
+  # To use for fills, add
+  scale_color_npg(palette = 	"nrc")+
+
+# To use for line and point colors, add
+  scale_fill_npg(palette = 	"nrc") +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  theme(text=element_text(family="serif"))
 
 plot_data_histo
-
-
 ```
 
 
-## Discussion of Results
-
-At the end of the workshop participants will have the knowledge and materials to create a QI project write-up and analysis all within a single R Markdown file. They will learn how to customize the project to suit many QI project proposals. This simplification of the QI project proposal will allow attendees to more quickly prepare QI project proposals and analyze their results. More advanced knowledge of those topics will allow users to create highly customized presentations of their work. 
-
-## Conclusion
-
-A standardized tool to create QI projects will eliminate duplicated efforts in project workflows and allow results to be more quickly disseminated within an institution, posted online, or published in a journal.
-
-## Attendee’s Take-away Tool
-
-Attendee's will be able to access the QI tools through a publicly available GitHub repository, which they will be able to download and modify for their own purposes. They will also receive a curated selection of tools used during the workshop for further reading.
 
 ## Use of Knowledge Acquired at Previous AMIA Events
 
 No. 
+
 
 ## References
 

@@ -1,6 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
 \documentclass[
 ]{article}
@@ -39,7 +40,11 @@
 \hypersetup{
   pdftitle={Quailty Improvement---Improved with R},
   pdfauthor={Mara Alexeev, MD, MPH1},
-  hidelinks,
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=blue,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
@@ -117,34 +122,106 @@
 
 \textsuperscript{1} Boston Children's Hospital, Boston, MA, USA
 
+Suggested length of workshop is \textbf{2 hours}.
+
 \hypertarget{what-might-the-attendee-be-able-to-do-after-being-in-your-session}{%
 \subsection{What might the attendee be able to do after being in your session?}\label{what-might-the-attendee-be-able-to-do-after-being-in-your-session}}
 
-In this workshop, attendees will learn how to use R\textsuperscript{\protect\hyperlink{ref-R-base}{1}} to create, analysis, share, and publish the results of quality improvement (QI) projects based on tools\textsuperscript{\protect\hyperlink{ref-noauthor_quality_2017}{2}} published by the Institute for Healthcare Improvement and publishing recommendations from the Journal Of Graduate Medical Education.\textsuperscript{\protect\hyperlink{ref-wong_how_2016}{3}}
+In this workshop, attendees will learn how to use R\textsuperscript{\protect\hyperlink{ref-R-base}{1}} to create, analyze, share, and publish the results of quality improvement (QI) projects based on tools\textsuperscript{\protect\hyperlink{ref-noauthor_quality_2017}{2}} published by the Institute for Healthcare Improvement and publishing recommendations from the Journal Of Graduate Medical Education.\textsuperscript{\protect\hyperlink{ref-wong_how_2016}{3}} This is a plug and play format that allows clinicians to directly create, analyze, and beautifully display their project and results with only a beginner's knowledge of R, R Markdown,\textsuperscript{\protect\hyperlink{ref-R-rmarkdown}{4}} and spreadsheets.
 
 \hypertarget{description-of-the-problem-or-gap}{%
-\subsection{Description of the Problem or Gap}\label{description-of-the-problem-or-gap}}
+\subsection{Description of the problem or gap}\label{description-of-the-problem-or-gap}}
 
 Many clinical informaticians participate in QI projects as either project leads or in supporting roles---helping other clinicians collect data from EHRs or implement projects within an EHR. There are many tools and guidelines for QI projects, but the tools are not well integrated into a single, comprehensive workflow of a QI project.
 
-\hypertarget{methods-what-did-you-do-to-address-the-problem-or-gap}{%
-\subsection{Methods: What did you do to address the problem or gap?}\label{methods-what-did-you-do-to-address-the-problem-or-gap}}
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
 
-I have created a QI template in R that uses existing R packages, QI tools, and publishing recommendations. This is a plug and play format that allows clinicians to directly create, analyze, and beautifully display their project and results with only a beginner's knowledge of R, R Markdown,\textsuperscript{\protect\hyperlink{ref-R-rmarkdown}{4}} \href{github.com}{Github}, and spreadsheets.
+At the end of the workshop, participants will have the knowledge and materials to create a QI project write-up and analysis all within a single R Markdown file. They will learn how to customize the project to suit many QI project proposals. This simplification of the QI project workflow will allow attendees to more quickly prepare QI project proposals and analyze their results. More advanced knowledge of R packages discussed at the workshop will allow users to create highly customized presentations of their work.
+A standardized tool to create QI projects will eliminate duplicated efforts in project workflows and allow results to be more quickly disseminated within an institution, posted online, or published in a journal.
 
-\hypertarget{results-what-was-the-outcomes-of-what-you-did-to-address-the-problem-or-gap}{%
-\subsection{Results: What was the outcome(s) of what you did to address the problem or gap?}\label{results-what-was-the-outcomes-of-what-you-did-to-address-the-problem-or-gap}}
+\hypertarget{attendees-take-away-tool}{%
+\subsection{Attendee's Take-away Tool}\label{attendees-take-away-tool}}
 
-During the workshop, attendees will modify cause and effect diagrams within R, customize tables and graphs for a Failure Modes and Effects Analysis (FMEA) and a Pareto Chart (Figure \ref{fig:pareto}), learn how to make scatter plots (Figure \ref{fig:scatter}) and histograms (Figure \ref{fig:histo}) with ggplot2, create runcharts that can update as data is collected with a click of button, use the automated bibliographic capabilities of R, create a Github Page for their demo QI project.
+Attendee's will be able to access the QI tools through a publicly available GitHub repository, which they will be able to download and modify for their own purposes. They will also receive a curated selection of advanced resources for further learning.
 
-\begin{figure}
+\hypertarget{prerequisities}{%
+\subsection{Prerequisities}\label{prerequisities}}
 
-{\centering \includegraphics{qi_workshop_files/figure-latex/pareto-1} 
+\begin{itemize}
+\tightlist
+\item
+  Computer with internet connection
+\item
+  \href{https://support.rstudio.com/hc/en-us/articles/227449447-Supported-browsers-for-RStudio-Connect}{Supported browser}
+\item
+  RStudio Cloud account---\emph{free}
+\item
+  Review \href{https://commonmark.org/help/tutorial/}{preparatory materials} to learn Markdown basics---\emph{optional, but useful}
+\end{itemize}
 
-}
+\hypertarget{level-of-content}{%
+\subsection{Level of content}\label{level-of-content}}
 
-\caption{Example from IHI QI Essentials Toolkit: Pareto}\label{fig:pareto}
-\end{figure}
+All content will be accessible to a beginner R user. However, each section of the \textbf{Play} part of the workshop will have intermediate and advanced topics embedded in the code for more advanced users to manipulate.
+
+\hypertarget{instructors-experience-teaching-similar-content}{%
+\subsection{Instructor's experience teaching similar content}\label{instructors-experience-teaching-similar-content}}
+
+Mara Alexeev is a pediatrician and clinical informatics fellow. She is also a graduate student working on her Masters in Biomedical Informatics at Harvard Medical School. She was part of the organizing committee for the 2020 R/Medicine conference and is a co-organizer for R-Ladies Boston, where she recently hosted a workshop on how to make and maintain a CV in R.
+
+\hypertarget{outline-of-topics}{%
+\subsection{Outline of topics}\label{outline-of-topics}}
+
+\textbf{Systems check} \emph{\textasciitilde15 minutes}
+
+\begin{itemize}
+\tightlist
+\item
+  Confirm accounts set up
+\item
+  Discuss pre-workshop materials
+\end{itemize}
+
+\textbf{Introduction} \emph{\textasciitilde30 minutes}
+
+\begin{itemize}
+\tightlist
+\item
+  R Markdown demo
+\item
+  Knit a document
+\item
+  View a demo GitHub Page
+\end{itemize}
+
+\textbf{Play} \emph{\textasciitilde30 minutes}
+
+\begin{itemize}
+\tightlist
+\item
+  Modify cause and effect diagrams within R
+\item
+  Customize tables and graphs for a Failure Modes and Effects Analysis (FMEA) and a Pareto Chart
+\item
+  Learn how to make scatter plots (Figure \ref{fig:scatter}) and histograms (Figure \ref{fig:histo}) with ggplot2
+\item
+  Create runcharts that can update as data is collected with a click of button
+\item
+  Use the automated bibliographic capabilities of R
+\end{itemize}
+
+\textbf{Wrap Up and Discussion} \emph{\textasciitilde20 minutes}
+
+\begin{itemize}
+\tightlist
+\item
+  Discussion of participants questions
+\item
+  Watch demonstration of publishing to Github Page
+\item
+  Preview of advanced materials
+\end{itemize}
 
 \begin{figure}
 
@@ -152,7 +229,7 @@ During the workshop, attendees will modify cause and effect diagrams within R, c
 
 }
 
-\caption{Example Scatter plot with ggplot2}\label{fig:scatter}
+\caption{Example scatter plot made in R}\label{fig:scatter}
 \end{figure}
 
 \begin{figure}
@@ -161,23 +238,8 @@ During the workshop, attendees will modify cause and effect diagrams within R, c
 
 }
 
-\caption{Example histogram created in ggplot2}\label{fig:histo}
+\caption{Example histogram created in R}\label{fig:histo}
 \end{figure}
-
-\hypertarget{discussion-of-results}{%
-\subsection{Discussion of Results}\label{discussion-of-results}}
-
-At the end of the workshop participants will have the knowledge and materials to create a QI project write-up and analysis all within a single R Markdown file. They will learn how to customize the project to suit many QI project proposals. This simplification of the QI project proposal will allow attendees to more quickly prepare QI project proposals and analyze their results. More advanced knowledge of those topics will allow users to create highly customized presentations of their work.
-
-\hypertarget{conclusion}{%
-\subsection{Conclusion}\label{conclusion}}
-
-A standardized tool to create QI projects will eliminate duplicated efforts in project workflows and allow results to be more quickly disseminated within an institution, posted online, or published in a journal.
-
-\hypertarget{attendees-take-away-tool}{%
-\subsection{Attendee's Take-away Tool}\label{attendees-take-away-tool}}
-
-Attendee's will be able to access the QI tools through a publicly available GitHub repository, which they will be able to download and modify for their own purposes. They will also receive a curated selection of tools used during the workshop for further reading.
 
 \hypertarget{use-of-knowledge-acquired-at-previous-amia-events}{%
 \subsection{Use of Knowledge Acquired at Previous AMIA Events}\label{use-of-knowledge-acquired-at-previous-amia-events}}
@@ -201,9 +263,6 @@ No.~
 
 \leavevmode\hypertarget{ref-R-rmarkdown}{}%
 4. Allaire J, Xie Y, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R. Rmarkdown: Dynamic documents for r {[}Internet{]}. 2020. Available from: \url{https://github.com/rstudio/rmarkdown}
-
-\leavevmode\hypertarget{ref-bookdown2016}{}%
-5. Xie Y. Bookdown: Authoring books and technical documents with {R} markdown {[}Internet{]}. Boca Raton, Florida: Chapman; Hall/CRC; 2016. Available from: \url{https://github.com/rstudio/bookdown}
 
 \end{CSLReferences}
 

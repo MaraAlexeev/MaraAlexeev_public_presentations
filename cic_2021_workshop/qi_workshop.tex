@@ -5,14 +5,13 @@
 %
 \documentclass[
 ]{article}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amsmath}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -41,14 +40,14 @@
   pdftitle={Quailty Improvement---Improved with R},
   pdfauthor={Mara Alexeev, MD, MPH1},
   colorlinks=true,
-  linkcolor=Maroon,
-  filecolor=Maroon,
-  citecolor=Blue,
-  urlcolor=blue,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -89,14 +88,14 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry spacing
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
  {% don't indent paragraphs
   \setlength{\parindent}{0pt}
   % turn on hanging indent if param 1 is 1
@@ -110,7 +109,7 @@
 \usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Quailty Improvement---Improved with R}
@@ -252,17 +251,17 @@ No.~
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}
-\leavevmode\hypertarget{ref-R-base}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-R-base}{}}%
 1. R Core Team. R: A language and environment for statistical computing {[}Internet{]}. Vienna, Austria: R Foundation for Statistical Computing; 2020. Available from: \url{https://www.R-project.org/}
 
-\leavevmode\hypertarget{ref-noauthor_quality_2017}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-noauthor_quality_2017}{}}%
 2. Quality {Improvement} {Essentials} {Toolkit} {[}Internet{]}. 2017 ;{[}cited 2021 Jan. 13{]} Available from: \url{http://www.ihi.org/resources/_layouts/download.aspx?SourceURL=\%2fresources\%2fKnowledge+Center+Assets\%2fTools+-+QualityImprovementEssentialsToolkit_e14261f9-05ff-4a7b-ba25-58c85c4c9e9a\%2fQIEssentialsToolkit.pdf}
 
-\leavevmode\hypertarget{ref-wong_how_2016}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-wong_how_2016}{}}%
 3. Wong BM, Sullivan GM. How to {Write} {Up} {Your} {Quality} {Improvement} {Initiatives} for {Publication} {[}Internet{]}. Journal of Graduate Medical Education. 2016 May ;8(2):128--133.{[}cited 2021 Jan. 12{]} Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4857497/}
 
-\leavevmode\hypertarget{ref-R-rmarkdown}{}%
-4. Allaire J, Xie Y, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R. Rmarkdown: Dynamic documents for r {[}Internet{]}. 2020. Available from: \url{https://github.com/rstudio/rmarkdown}
+\leavevmode\vadjust pre{\hypertarget{ref-R-rmarkdown}{}}%
+4. Allaire J, Xie Y, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R. Rmarkdown: Dynamic documents for r {[}Internet{]}. 2021. Available from: \url{https://CRAN.R-project.org/package=rmarkdown}
 
 \end{CSLReferences}
 
